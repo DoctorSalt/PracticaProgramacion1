@@ -34,7 +34,6 @@ public class PrincipalFrame2 extends JFrame {
 	private Process p5;
 	List listaM;
 	JTextArea txtComandos;
-	DefaultListModel<String> DLM = new DefaultListModel<String>();
 	/**
 	 * Launch the application.
 	 */
@@ -152,9 +151,9 @@ public class PrincipalFrame2 extends JFrame {
 		listaM = new List();
 		listaM.setBounds(243, 107, 241, 128);
 		contentPane.add(listaM);
-		RellenarLista();
+		rellenarLista();
 	}
-	private void RellenarLista() {
+	private void rellenarLista() {
 		try {
 			String command = "cmd /c TASKLIST>%USERPROFILE%\\Desktop\\temp.txt";
 			Process p5 = Runtime.getRuntime().exec(command);
@@ -211,6 +210,8 @@ public class PrincipalFrame2 extends JFrame {
 			try
 			{
 				p1 = Runtime.getRuntime().exec ("C:/Windows/System32/notepad.exe");
+				suprimirLista();
+				rellenarLista();
 			}
 			catch (Exception error)
 			{
@@ -221,6 +222,8 @@ public class PrincipalFrame2 extends JFrame {
 			try
 			{
 				p2 = Runtime.getRuntime().exec ("C:/Windows/System32/mspaint.exe");
+				suprimirLista();
+				rellenarLista();
 			}
 			catch (Exception error)
 			{
@@ -228,10 +231,12 @@ public class PrincipalFrame2 extends JFrame {
 			}	
 			break;
 
-		case "practica1":
+		case "practica":
 			try
 			{
-				p3 = Runtime.getRuntime().exec ("C:/Program_Files/Programa_Gestion/Programa_Gestion_Ejecutable.jar");
+				p3 = Runtime.getRuntime().exec ("C:/Users/usuario/Desktop/Programa_Gestion/PGE.jar");
+				suprimirLista();
+				rellenarLista();
 			}
 			catch (Exception error)
 			{
@@ -240,8 +245,10 @@ public class PrincipalFrame2 extends JFrame {
 			break;
 		case "practica2":
 			try
-			{
-				p4 = Runtime.getRuntime().exec ("C:/Program_Files/ProgramaJuego/Juego.jar");
+			{				
+				p4 = Runtime.getRuntime().exec ("C:/Users/usuario/Desktop/Juego_Instalable/Juego.jar");
+				suprimirLista();
+				rellenarLista();
 			}
 			catch (Exception error)
 			{
@@ -253,6 +260,14 @@ public class PrincipalFrame2 extends JFrame {
 			break;
 		}
 	}
+	private void suprimirLista() {
+		// TODO Auto-generated method stub
+		int cantidadLista= listaM.getRows();
+		for(int a=0;a<=cantidadLista;a++) {
+			listaM.remove(a);
+		}
+	}
+
 	public void comandos(String textoOrden) {
 		try
 		{
