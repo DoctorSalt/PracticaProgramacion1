@@ -57,7 +57,7 @@ public class PrincipalFrame2 extends JFrame {
 		setTitle("Programa Ejecutador");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 589, 289);
+		setBounds(100, 100, 702, 296);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -105,7 +105,7 @@ public class PrincipalFrame2 extends JFrame {
 				matarFuerte(seleccionado);
 			}
 		});
-		btnMatar.setBounds(490, 141, 78, 36);
+		btnMatar.setBounds(593, 143, 78, 36);
 		contentPane.add(btnMatar);
 		txtEjecutar = new JTextField();
 		txtEjecutar.setBounds(12, 14, 208, 22);
@@ -137,7 +137,7 @@ public class PrincipalFrame2 extends JFrame {
 		txtComandos.setBounds(12, 107, 208, 128);
 		contentPane.add(txtComandos);
 		listaM = new List();
-		listaM.setBounds(243, 107, 241, 128);
+		listaM.setBounds(243, 107, 342, 128);
 		contentPane.add(listaM);
 		rellenarLista();
 	}
