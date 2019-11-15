@@ -270,8 +270,8 @@ public class PrincipalClase extends JFrame {
 			String linea="";
 			while((palabrita = stdIn.readLine())!=null) {
 				linea = linea + palabrita+"\n";
-				txtComandos.setText(linea);
 			}
+			txtComandos.setText(linea);
 		}catch (Exception error)
 		{
 			System.out.println(error);
