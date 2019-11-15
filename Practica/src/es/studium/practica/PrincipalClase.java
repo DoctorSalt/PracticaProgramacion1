@@ -265,11 +265,9 @@ public class PrincipalClase extends JFrame {
 			p5.waitFor();
 			File f = new File("C:/Users/usuario/Desktop/temp2.txt");
 			FileReader fr = new FileReader(f);
-			BufferedReader stdIn = new BufferedReader(fr);
-			ArrayList<String> texto = new ArrayList<String>();
-			
-			 String palabrita=null;
-			 String linea="";
+			BufferedReader stdIn = new BufferedReader(fr);	
+			String palabrita=null;
+			String linea="";
 			while((palabrita = stdIn.readLine())!=null) {
 				linea = linea + palabrita+"\n";
 				txtComandos.setText(linea);
