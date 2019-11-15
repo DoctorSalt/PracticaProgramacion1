@@ -170,12 +170,12 @@ public class PrincipalClase extends JFrame {
 		String proceso = linea[1];
 		String command = "cmd /c "+"tskill"+" "+proceso;		
 		suprimirLista();
-		rellenarLista();
 		try {
 			p6 = Runtime.getRuntime().exec(command);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
+		rellenarLista();
 	}
 
 	private String borrarCosas(String seleccionado) {
