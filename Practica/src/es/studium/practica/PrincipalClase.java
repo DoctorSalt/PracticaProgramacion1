@@ -17,8 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
 
-public class PrincipalFrame2 extends JFrame {
+public class PrincipalClase extends JFrame {
 	/**
 	 * 
 	 */
@@ -31,8 +32,8 @@ public class PrincipalFrame2 extends JFrame {
 	private Process p4;
 	private Process p5;
 	private Process p6;
+	private JTextArea txtComandos;
 	List listaM;
-	JTextArea txtComandos;
 	/**
 	 * Launch the application.
 	 */
@@ -40,7 +41,7 @@ public class PrincipalFrame2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PrincipalFrame2 frame = new PrincipalFrame2();
+					PrincipalClase frame = new PrincipalClase();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +50,7 @@ public class PrincipalFrame2 extends JFrame {
 		});
 	}
 
-	public PrincipalFrame2() {
+	public PrincipalClase() {
 		iniciadorComponentes();
 	}
 
@@ -114,9 +115,7 @@ public class PrincipalFrame2 extends JFrame {
 		JButton btnComando1 = new JButton("Ejecutar");
 		btnComando1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Recogemos texto
 				String aEjecutar= txtEjecutar.getText();
-				//Ejecutamos dir
 				comandos(aEjecutar);
 			}
 		});
@@ -130,15 +129,19 @@ public class PrincipalFrame2 extends JFrame {
 		});
 		btnComando2.setBounds(136, 51, 84, 25);
 		contentPane.add(btnComando2);
-		txtComandos = new JTextArea();
-		txtComandos.setLineWrap(true);
-		txtComandos.setTabSize(9);
-		txtComandos.setRows(20);
-		txtComandos.setBounds(12, 107, 208, 128);
-		contentPane.add(txtComandos);
 		listaM = new List();
 		listaM.setBounds(243, 107, 342, 128);
 		contentPane.add(listaM);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(24, 107, 196, 128);
+		contentPane.add(scrollPane);
+		
+		txtComandos = new JTextArea();
+		txtComandos.setRows(5);
+		txtComandos.setColumns(5);
+		txtComandos.setEditable(false);
+		scrollPane.setViewportView(txtComandos);
 		rellenarLista();
 	}
 	private void rellenarLista() {
@@ -155,10 +158,8 @@ public class PrincipalFrame2 extends JFrame {
 			}
 			bf.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -173,7 +174,6 @@ public class PrincipalFrame2 extends JFrame {
 		try {
 			p6 = Runtime.getRuntime().exec(command);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 	}
@@ -265,19 +265,15 @@ public class PrincipalFrame2 extends JFrame {
 			p5.waitFor();
 			File f = new File("C:/Users/usuario/Desktop/temp2.txt");
 			FileReader fr = new FileReader(f);
-			BufferedReader bf = new BufferedReader(fr);
+			BufferedReader stdIn = new BufferedReader(fr);
 			ArrayList<String> texto = new ArrayList<String>();
-			String linea=bf.readLine();
-			texto.add(linea);
-			while(bf.readLine()!=null) {
-				linea=bf.readLine();
-				texto.add(linea);
+			
+			 String palabrita=null;
+			 String linea="";
+			while((palabrita = stdIn.readLine())!=null) {
+				linea = linea + palabrita+"\n";
+				txtComandos.setText(linea);
 			}
-			String resultadoTexto="";
-			for(int i=0; i<texto.size();i++) {
-				resultadoTexto=resultadoTexto+texto.get(i);
-			}			
-			txtComandos.setText(resultadoTexto);
 		}catch (Exception error)
 		{
 			System.out.println(error);
